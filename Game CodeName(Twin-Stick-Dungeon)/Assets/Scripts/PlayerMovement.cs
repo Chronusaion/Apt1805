@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
-   
+    
     private Rigidbody2D myRb;
     
     private Vector2 MoveVelocity;
+
+    public float offSet;
 
 
     // Start is called before the first frame update
@@ -21,12 +23,20 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        MoveVelocity = moveInput * moveSpeed;
+        MoveVelocity = moveInput.normalized * moveSpeed;
 
+
+        Vector3 diferencial = (Input.mousePosition) + transform.position;
+        float rotacionZ = Mathf.Atan2(diferencial.y, diferencial.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotacionZ + offSet);
     }
 
     private void FixedUpdate()
     {
         myRb.MovePosition(myRb.position + MoveVelocity * Time.fixedDeltaTime);
+
+        
     }
+
+   
 }
