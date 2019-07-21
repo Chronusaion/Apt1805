@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
-    public float moveRotacion;
+    
     private Rigidbody2D myRb;
     
     private Vector2 MoveVelocity;
 
-    public float offSetRotacion;
+    
     
 
 
@@ -28,13 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         MoveVelocity = moveInput.normalized * moveSpeed;
-
-
-        /*Vector3 diferencial = Camera.main.ScreenToViewportPoint(Input.mousePosition) - transform.position;
-        float rotacionZ = Mathf.Atan2(diferencial.y, diferencial.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotacionZ + offSetRotacion);*/
-
-
 
     }
 
